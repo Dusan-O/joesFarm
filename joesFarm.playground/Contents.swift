@@ -31,7 +31,13 @@ var monAge = "Vous avez \(age) ans!"
 
 var joeSavingDays = "Cher Joe, il te faudra économiser pendant \(result) jours pour te payer ton voyage à \(price) €"
 
-for i in 1...5 {
-    print("avance")
-    print("le pion a avancé de \(i) cases")
+var money = 0.0
+
+for _ in 1...30 {
+    // Joe nourrit les vaches
+    money -= 4
+    // Joe vends du lait
+    money += 30 * 0.50
 }
+
+print("\(money) €") //330.0 €
