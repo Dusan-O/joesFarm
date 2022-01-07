@@ -1,43 +1,46 @@
-import UIKit
+// Le prix du voyage
+let price = 1499.0
 
-var greeting = "Hello, playground"
+// Nombre de jours pendant lesquels Joe doit économiser
+var numberOfDay = 0
 
-
-var a:Double = 1876.79797657765609870978709780987
-var b:Float = 1876.79797657765609870978709780987
-var c = 1876.79797657765609870978709780987
-
-// Le prix du voyage aux Caraïbes de Joe
-var price = 1499
-
-// Le bénéfice quotidien de Joe avec sa ferme
-var dailyBenefit = 10
-
-
-// Le nombre de jours pendant lesquelles Joe doit économiser
-var result = price / dailyBenefit
-
- // ou alternativement => var price = 1499.0
-
-
-var debut = "Je suis le début de la phrase... "
-var fin = "Et moi la fin !"
-
-var phrase = debut + fin
-
-var age = 34
-var monAge = "Vous avez \(age) ans!"
-
-
-var joeSavingDays = "Cher Joe, il te faudra économiser pendant \(result) jours pour te payer ton voyage à \(price) €"
-
+// L'argent de Joe
 var money = 0.0
 
-for _ in 1...30 {
-    // Joe nourrit les vaches
+while money < price {
+    // Joe nourrit les vaches tous les jours
     money -= 4
-    // Joe vends du lait
-    money += 30 * 0.50
+    
+    if numberOfDay == 1 {
+    // Joe moisonne
+        money += 100 * 0.30
+    } else if numberOfDay == 10 || numberOfDay == 20 {
+        money += 30 * 1
+    } else {
+        money += 30 * 0.50
+    }
+    
+    numberOfDay += 1
 }
 
-print("\(money) €") //330.0 €
+print("Il aura fallu \(numberOfDay) jours a Joe pour économiser \(money)")
+
+var day = 0 // Le 0 c'est donc lundi
+
+while day < 30 {
+    if day % 7 == 5 || day % 7 == 6 {
+        // C'est le 6e ou 7e jour de la semaine
+        print("Super c'est le week-end !")
+    } else {
+        print("Allez au travail !")
+    }
+    day += 1
+}
+
+if numberOfDay % 30 == 1 {
+    // Joe moissonne
+} else if numberOfDay % 30 == 10 || numberOfDay % 30 == 20 {
+    // Joe tonds les moutons
+} else {
+    // Joe vends son lait
+}
