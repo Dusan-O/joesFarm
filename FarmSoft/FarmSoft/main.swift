@@ -33,21 +33,38 @@ func sell() {
     barn = ["milk": 0, "wheat": 0, "wool": 0]
 }
 
-func milkCows() {
-    barn["milk"]! += 30
+func milkCows(retrieving quantity: Int) {
+    barn["milk"]! += quantity
 }
 
-func harvest() {
-    barn["wheat"]! += 100
+func harvest(retrieving quantity: Int) {
+    barn["wheat"]! += quantity
 }
 
-func mowSheep() {
-    barn["wool"]! += 30
+func mowSheep(retrieving quantity: Int) {
+    barn["wool"]! += quantity
 }
 
 //======================
 // MARK: - Conversation
 //======================
+
+func readQuantity(of type: String) -> Int? {
+    // On demande la quantité désiré
+    print("Combien de \(type) avez vous récupéré ?")
+    
+    // On convertie et on renvoie la réponse
+    if let line = readLine() {
+        if let quantity = Int(line) {
+            return quantity
+        }
+    }
+    
+    // Si la valeur n'a pas pu être interprétée
+    print("Je n'ai pas compris.")
+    
+    return nil
+}
 
 func addNewActivity() {
     print("Qu’avez-vous fait aujourd'hui?"
@@ -65,11 +82,17 @@ if let choice = readLine() {
     case "2": // Vendre les produits
         sell()
     case "3": // Traire les vaches
-        milkCows()
-    case "4":
-        harvest()
-    case "5":
-        mowSheep()
+        if let quantity = readQuantity(of: "🍼") {
+            milkCows(retrieving: quantity)
+        }
+    case "4": // Moisonner
+        if let quantity = readQuantity(of: "🌾") {
+            harvest(retrieving: quantity)
+        }
+    case "5": // Tondre les moutons
+        if let quantity = readQuantity(of: "⚪️") {
+            mowSheep(retrieving: quantity)
+        }
     default:
         print("Je ne comprends pas")
         
@@ -91,7 +114,7 @@ func presentMenu() {
         switch choice {
         case "1": // Ajouter une nouvelle activité
             addNewActivity()
-        case "2":
+        case "2": // Consulter la banque
             print("Votre banque contient \(money) euros !")
         case "3": // Consulter la grange
         
@@ -110,3 +133,7 @@ func presentMenu() {
 while true {
     presentMenu()
 }
+
+
+
+
