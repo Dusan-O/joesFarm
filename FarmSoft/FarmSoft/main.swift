@@ -11,10 +11,10 @@ import Foundation
 // MARK: - Parameters
 //======================
 
-// L'argent de Joe
+// Joe's money
 var money = 0.0
 
-// La grange de Joe : [lait, blé, laine]
+// Joe's barn : [milk, wheat, wool]
 var barn = ["milk": 0, "wheat": 0, "wool": 0]
 
 //======================
@@ -29,7 +29,7 @@ func sell() {
     money += Double(barn["wheat"]!) * 0.30
     money += Double(barn["wool"]!) * 1
 
-    // On vide la grange
+    // barn empty
     barn = ["milk": 0, "wheat": 0, "wool": 0]
 }
 
@@ -50,10 +50,10 @@ func mowSheep(retrieving quantity: Int) {
 //======================
 
 func readQuantity(of type: String) -> Int? {
-    // On demande la quantité désiré
-    print("Combien de \(type) avez vous récupéré ?")
+    // what's the quantity
+    print("How many \(type) did you get ?")
     
-    // On convertie et on renvoie la réponse
+    // Convert the quantity and return
     if let line = readLine() {
         if let quantity = Int(line) {
             return quantity
@@ -67,69 +67,69 @@ func readQuantity(of type: String) -> Int? {
 }
 
 func addNewActivity() {
-    print("Qu’avez-vous fait aujourd'hui?"
-        + "\n1. 🥕  J’ai nourri mes animaux"
-        + "\n2. 💰  J’ai vendu mes produits"
-        + "\n3. 🐄  J’ai trait mes vaches"
-        + "\n4. 🌾  J’ai moissonné"
-        + "\n5. 🐑  J’ai tondu mes moutons")
+    print("What did you do today ?"
+        + "\n1. 🥕  I've feeded the animals"
+        + "\n2. 💰  I've sold items"
+        + "\n3. 🐄  I've milked the cows"
+        + "\n4. 🌾  Harvest"
+        + "\n5. 🐑  Mow the sheeps")
 
-// On récupére la réponse de l'utilisateur
+// We listen the user's answer
 if let choice = readLine() {
     switch choice {
-    case "1": // Nourrir les animaux
+    case "1": // feed the animals
         feedAnimals()
-    case "2": // Vendre les produits
+    case "2": // sell the items
         sell()
-    case "3": // Traire les vaches
+    case "3": // Milk cows
         if let quantity = readQuantity(of: "🍼") {
             milkCows(retrieving: quantity)
         }
-    case "4": // Moisonner
+    case "4": // Harvest
         if let quantity = readQuantity(of: "🌾") {
             harvest(retrieving: quantity)
         }
-    case "5": // Tondre les moutons
+    case "5": // mow sheeps
         if let quantity = readQuantity(of: "⚪️") {
             mowSheep(retrieving: quantity)
         }
     default:
-        print("Je ne comprends pas")
+        print("I don't understand")
         
     }
     
-    print("🎉  Super 🎉")
+    print("🎉  Great 🎉")
     
     }
 }
 
 func presentMenu() {
-    print("Que voulez vous faire ?"
-        + "\n1. 🤸  Enregistrer une nouvelle activité"
-        + "\n2. 🏦  Consulter ma banque"
-        + "\n3. 🏠  Consulter ma grange")
+    print("What do you want to do ?"
+        + "\n1. 🤸  Enter a new activity"
+        + "\n2. 🏦  Check the bank balance"
+        + "\n3. 🏠  Check the barn")
 
-    // On récupére la réponse de l'utilisateur
+    // We listen the user's answer
     if let choice = readLine() {
         switch choice {
-        case "1": // Ajouter une nouvelle activité
+        case "1": // Add new activity
             addNewActivity()
-        case "2": // Consulter la banque
-            print("Votre banque contient \(money) euros !")
-        case "3": // Consulter la grange
+        case "2": // check the banck balance
+            print("On your bank account, the balance is \(money) euros !")
+        case "3": // check the barn
         
-            print("Votre grange contient :"
-                    + "\n🍼  \(barn["milk"]!) bidons de lait"
-                    + "\n🌾  \(barn["wheat"]!) bottes de blé"
-                    + "\n⚪️  \(barn["wool"]!) pelottes de laine")
+            print("In your barn, you have :"
+                    + "\n🍼  \(barn["milk"]!) milk bottles"
+                    + "\n🌾  \(barn["wheat"]!) packs of wheat"
+                    + "\n⚪️  \(barn["wool"]!) packs of wool")
             default:
-                print("Je ne comprends pas.")
+                print("I don't understand.")
             }
     }
 
 }
 
-// la boucle du programme
+// software loop
 while true {
     presentMenu()
 }
